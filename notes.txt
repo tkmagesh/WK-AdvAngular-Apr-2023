@@ -1,0 +1,17 @@
+Magesh Kuppan
+
+Repo :
+    https://github.com/tkmagesh/WK-AdvAngular-Apr-2023
+
+About You:
+    Name
+    Core Skillset
+    Experience in Angular
+
+Books
+    1. Patterns of Enterprise Application Architecture - Martin Fowler
+    2. Domain Driven Design - Eric Evans
+    3. Refactoring - Martin Fowler
+    4. Refactoring to Patterns - Joshua Kereivesky
+    
+
