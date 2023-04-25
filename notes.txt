@@ -15,3 +15,21 @@ Books
     4. Refactoring to Patterns - Joshua Kereivesky
     
 
+Building Blocks
+    Module
+        Logical grouping of angular entities
+
+    Component
+        Presentation (template + css)
+        UI events
+        State
+
+    Directive
+        DOM manipulation
+        Directive = component without template
+
+    Pipe
+        Data transformation for presentation
+
+    Service
+        

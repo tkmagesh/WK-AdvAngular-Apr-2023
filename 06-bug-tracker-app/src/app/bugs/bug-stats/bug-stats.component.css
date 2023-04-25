@@ -1,0 +1,11 @@
+.stats,
+.bugname {
+    font-size: 18pt;
+}
+
+.closed {
+    color: red;
+    text-decoration: line-through;
+    font-style: italic;
+    font-weight: bold;
+}

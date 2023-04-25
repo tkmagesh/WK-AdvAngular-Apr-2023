@@ -12,7 +12,7 @@ const obs$ = switch$.pipe(
     filter(toggle => toggle),
     switchMap(toggle => timer$)
 )
-obs$.subscribe(time => console.log('ms passed: ' + time))
+const subscription = obs$.subscribe(time => console.log('ms passed: ' + time))
 
 
 // Simulation

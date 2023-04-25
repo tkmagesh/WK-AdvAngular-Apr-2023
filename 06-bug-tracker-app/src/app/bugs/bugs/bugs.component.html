@@ -1,0 +1,32 @@
+<app-bug-stats [data]="bugs"></app-bug-stats>
+<section class="sort">
+    <label for="">Order By :</label>
+    <select name="" id="">
+        <option value=""></option>
+        <option value=""></option>
+    </select>
+    <label for="">Descending ?:</label>
+    <input type="checkbox" name="" id="">
+</section>
+<section class="edit">
+    <label for="">Bug Name :</label>
+    <input type="text" [(ngModel)]="newBugName">
+    <span> [ {{this.newBugName.length}} ] </span>
+    <button (click)="onAddNewClick()">Add New</button>
+</section>
+<section class="list">
+    <ul>
+        <li *ngFor="let bug of bugs">
+            <span 
+                class="bugname" 
+                [ngClass] ="{closed : bug.isClosed}"
+                (click)="onBugNameClick(bug)"   
+            >
+                {{bug.name}}
+            </span>
+            <div class="datetime">{{bug.createdAt | elapsed }}</div>
+            <button>Remove</button>
+        </li>
+    </ul>
+    <button>Remove Closed</button>
+</section>

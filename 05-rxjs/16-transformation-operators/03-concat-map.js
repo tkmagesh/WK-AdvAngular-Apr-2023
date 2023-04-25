@@ -1,5 +1,5 @@
 //Ex:1
-/* 
+
 
 const { Subject, interval } = require('rxjs');
 const { concatMap, filter } = require('rxjs/operators');
@@ -28,13 +28,13 @@ setTimeout(() => switch$.next(false), 7000);
 
 setTimeout(() => subscription.unsubscribe(), 10000); 
 
-*/
 
-const { Subject } = require('rxjs');
+/* 
+const { Subject, interval } = require('rxjs');
 const { concatMap, filter } = require('rxjs/operators');
 
 // The subject that will be used to publish data events
-const dataStream$ = new Subject()
+const dataStream$ = interval(500)
 
 // The subject that will be used as a switch
 const switch$ = new Subject();
@@ -45,14 +45,27 @@ const subscription = switch$.pipe(
     concatMap(toggle => dataStream$)
 ).subscribe(time => console.log('data received: ' + time))
 
-setTimeout(() => switch$.next(true), 1000);
-setTimeout(() => dataStream$.next(1), 2000);
-setTimeout(() => switch$.next(false), 4000);
-setTimeout(() => dataStream$.next(2), 6000);
+setTimeout(() => {
+    console.log('sending true');
+    switch$.next(true)}
+, 1000);
+
+
+// setTimeout(() => dataStream$.next(1), 2000);
+setTimeout(() => {
+    console.log('sending false'); 
+    switch$.next(false)}
+, 4000);
+
+// setTimeout(() => dataStream$.next(2), 6000);
+setTimeout(() => {
+    console.log('sending true'); 
+    switch$.next(true)}
+, 6000);
 
 setTimeout(() => {
-    dataStream$.next(3);
-    dataStream$.complete()
+    // dataStream$.next(3);
+    // dataStream$.complete()
 }, 8000);
 
-setTimeout(() => subscription.unsubscribe(), 10000);
+setTimeout(() => subscription.unsubscribe(), 10000); */

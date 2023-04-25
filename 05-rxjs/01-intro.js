@@ -58,8 +58,7 @@ setTimeout(() => {
 */
 
 //using interval()
-
-
+/* 
 const subscription = interval(1000).subscribe(no => console.log(`timer [1]: ${no}`))
 
 setTimeout(() => {
@@ -71,9 +70,9 @@ setTimeout(() => {
 
 setTimeout(() => {
     subscription.unsubscribe()
-}, 10000);
+}, 10000); */
 
-// let values = [10, 20, 30, 40, 50]
+let values = [10, 20, 30, 40, 50]
 /* 
 var arrObs$ = new Observable(observer => {
     for (let value of values)
@@ -82,9 +81,10 @@ var arrObs$ = new Observable(observer => {
 }) 
 */
 // var arrObs$ = from(values)
-/* var arrObs$ = of(values)
+var arrObs$ = of(values)
+arrObs$.subscribe(no => console.log(no))
 
-
+/*
 var promise = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve(1000)
