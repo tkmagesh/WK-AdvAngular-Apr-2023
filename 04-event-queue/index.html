@@ -7,6 +7,7 @@
     <title>Event Queue</title>
     <script>
         (() => {
+            /* 
             function doWork(){
                 for (let i = 0; i < 10000; i++) {
                     for (let j = 0; j < 2000; j++) {
@@ -14,14 +15,59 @@
                         }
                     }
                 }
+            } 
+            */
+           function doWork(onProgress) {
+                let iteractionCount = 1000;
+
+                function oneIteration(){
+                    for (let i = 0; i < (3000/iteractionCount); i++) {
+                        for (let j = 0; j < 2000; j++) {
+                            for (let k = 0; k < 2000; k++) {
+                            }
+                        }
+                        
+                    }
+                    iteractionCount--
+                    if (iteractionCount % 10 === 0) {
+                        var percentCompleted = ((1000 - iteractionCount) / 1000) * 100
+                        onProgress({
+                            percentCompleted: percentCompleted,
+                            type: "progress"
+                        })
+                    }
+                    if (iteractionCount > 0) {
+                        setTimeout(oneIteration)
+                    } else {
+                        console.log("Work Completed")
+                        if (typeof onProgress === 'function'){
+                            onProgress({
+                                percentCompleted: 100,
+                                type: "complete"
+                            })
+                        }
+                    }
+                }
+                oneIteration()
             }
             function displayMessage(msg){
                 document.getElementById('divMessages').innerHTML += msg + '<br/>'
             }
             function onBtnDoWorkClick(){
-                displayMessage('Work Started')
-                doWork()
-                displayMessage('Work Completed')
+                displayMessage('Work Started') // DOM updated, but not repainted
+                /* 
+                setTimeout(() => { // schedule the execution of the given function through the event queue
+                    doWork()
+                    displayMessage('Work Completed') // DOM updated, but not repainted
+                }) 
+                */
+               doWork((evt) => {
+                if (evt.type === 'complete'){
+                    displayMessage('Work Completed')
+                } else if (evt.type === 'progress'){
+                    document.getElementById('workProgress').value = evt.percentCompleted
+                }
+               })
             }
             function onDocumentLoad(){
                 var btnDoWork = document.getElementById('btnDoWork');
@@ -34,6 +80,9 @@
 <body>
     <input type="text" name="" id="">
     <button id="btnDoWork">Work</button>
+    <div>
+        <progress id="workProgress" min="0" max="100" value="0"></progress>
+    </div>
     <div id="divMessages"></div>
 </body>
 </html>
