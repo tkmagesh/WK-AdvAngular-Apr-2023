@@ -1,4 +1,5 @@
 (function(){
+    //sync
     function addSync(x,y){
         console.log(`   [@service] processing ${x} and ${y}`)
         var result = x + y
@@ -49,7 +50,88 @@
         return p;
     }
 
-    window['addAsyncPromise'] = addAsyncPromise
+    //sync client
+    function addSyncClient(x, y) {
+        console.log(`[@client] invoking the service`)
+        var result = addSync(x, y)
+        console.log(`[@client] result = ${result}`)
+    }
+
+    //promise client
+   /* 
+    function addAsyncPromiseClient(x,y){
+        console.log(`[@client] invoking the service`)
+        var p = addAsyncPromise(x, y)
+        p.then(function (result) {
+            console.log(`[@client] result = ${result}`)
+        }) 
+    } 
+    */
+
+    async function addAsyncAwaitPromiseClient(x, y) {
+        console.log(`[@client] invoking the service`)
+        var result = await addAsyncPromise(x, y)
+        console.log(`[@client] result = ${result}`)
+
+        //followup - sync
+        // return result * 2
+
+        //followup - async
+        return new Promise((resolveFn, rejectFn) => {
+            setTimeout(() => {
+                var doubleResult = result * 2
+                resolveFn(doubleResult)
+            }, 4000);
+        })
+    }
+    window['addAsyncAwaitPromiseClient'] = addAsyncAwaitPromiseClient
+
+   /* 
+    function addAsyncAwaitPromiseClient2(x, y) {
+        console.log(`[@client][1] invoking the service`)
+        var p1 = addAsyncPromise(x, y)
+        p1.then((result1) => {
+            console.log(`[@client][1] result1 = ${result1}`)
+        })
+
+        console.log(`[@client][2] invoking the service`)
+        var p2 = addAsyncPromise(1000, 2000)
+        p2.then((result2) => {
+            console.log(`[@client][2] result2 = ${result2}`)
+        })
+        
+    } 
+    */
+
+    function addAsyncAwaitPromiseClient2(x, y) {
+        console.log(`[@client][1] invoking the service`)
+        var p1 = addAsyncPromise(x, y)
+        
+        console.log(`[@client][2] invoking the service`)
+        var p2 = addAsyncPromise(1000, 2000)
+
+        Promise
+            .all([p1, p2])
+            .then(([result1, result2]) => {
+                console.log(`[@client][1] result1 = ${result1}`)        
+                console.log(`[@client][2] result2 = ${result2}`)
+            })
+        
+    } 
+    /* 
+    async function addAsyncAwaitPromiseClient2(x, y) {
+
+        console.log(`[@client][1] invoking the service`)
+        var result1 = await addAsyncPromise(x, y)
+        console.log(`[@client][1] result1 = ${result1}`)
+        
+        console.log(`[@client][2] invoking the service`)
+        var result2 = await addAsyncPromise(1000, 2000)
+        console.log(`[@client][2] result2 = ${result2}`)
+
+    } 
+    */
+    window['addAsyncAwaitPromiseClient2'] = addAsyncAwaitPromiseClient2
 })()
 
 // promise followup - async
