@@ -33,3 +33,14 @@ Building Blocks
 
     Service
         
+
+    State
+        UI State
+            Any data that assists in the presentational logic of the Application
+            It is highly UNLIKELY that this data is needed in other parts of the application
+            OK to maintain this data in the component
+
+        Application State
+            Any data that assists in the domain logic of the application
+            It is highly LIKELY that this data is needed in other parts of the application
+            DO NOT maintain this data in the component

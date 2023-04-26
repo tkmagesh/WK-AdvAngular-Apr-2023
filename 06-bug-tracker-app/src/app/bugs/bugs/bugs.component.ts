@@ -16,6 +16,8 @@ export class BugsComponent implements OnInit {
     this.bugs.push({ id: 2, name: "User actions not recognized", isClosed: true, createdAt: new Date('10-Apr-2023') })
     this.bugs.push({ id: 3, name: "Data integrity checks failed", isClosed: false, createdAt: new Date('10-May-2023') })
     this.bugs.push({ id: 4, name: "Application not responding", isClosed: true, createdAt: new Date('10-Jan-2023') })
+
+    
   }
 
   getClosedCount() : number {
