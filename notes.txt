@@ -44,3 +44,6 @@ Building Blocks
             Any data that assists in the domain logic of the application
             It is highly LIKELY that this data is needed in other parts of the application
             DO NOT maintain this data in the component
+
+Redux Dev Tools - Chrome Extension
+    https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
