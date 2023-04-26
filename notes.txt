@@ -68,7 +68,7 @@ MicroFrontEnd
     Run the plugin to convert the projects into MicroFrontEnds
         In the workspace folder
             ng g @angular-architects/module-federation --project shell --port 4200 --type host
-            ng g @angular-architects/module-federation:init --project shell --port 4200 --type host
+            ng g @angular-architects/module-federation:init --project mfe1 --port 3200 --type remote
 
             Update the webpack.config.js file with the updated port numbers
 
@@ -79,5 +79,14 @@ MicroFrontEnd
         ng serve shell
 
     Modify the routes in the shell to load the MicroFrontEnds
-
+        Example:
+            {
+                path: 'flights',
+                loadChildren: () =>
+                    loadRemoteModule({
+                        type: 'manifest',
+                        remoteName: 'mfe1',
+                        exposedModule: './Module',
+                    }).then((m) => m.FlightsModule),
+            }
     Load the shell endpoint in the Browser
