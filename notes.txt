@@ -47,3 +47,37 @@ Building Blocks
 
 Redux Dev Tools - Chrome Extension
     https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
+
+
+MicroFrontEnd
+    Create a workspace
+        ng new wk-wfe-app --create-application=false
+
+    Create the shell project
+        cd wk-wfe-app
+        ng g application shell
+
+    Create the mfe project
+        cd wk-wfe-app
+        ng g application mfe1
+
+    Install the plugin
+        In the workspace folder
+            npm i  @angular/architects/module-federation -D
+
+    Run the plugin to convert the projects into MicroFrontEnds
+        In the workspace folder
+            ng g @angular-architects/module-federation --project shell --port 4200 --type host
+            ng g @angular-architects/module-federation:init --project shell --port 4200 --type host
+
+            Update the webpack.config.js file with the updated port numbers
+
+    Serve the mfe1
+        ng serve mfe1
+
+    Serve the shell
+        ng serve shell
+
+    Modify the routes in the shell to load the MicroFrontEnds
+
+    Load the shell endpoint in the Browser
