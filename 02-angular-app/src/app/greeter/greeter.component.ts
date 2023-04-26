@@ -16,6 +16,6 @@ export class GreeterComponent {
 
   }
   onBtnGreetClick() {
-    this.message = this.greeterService.greet(this.userName)
+    this.message = this.userName;
   }
 }
